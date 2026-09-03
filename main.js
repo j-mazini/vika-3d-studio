@@ -1,40 +1,12 @@
 // ViKa 3D Studio - High-Precision Interactive Engine
 
 document.addEventListener('DOMContentLoaded', () => {
-    initMobileMenu();
     initTitlePrinterEffect();
     initThreeJSStage();
     initMaterialSimulator();
     initInstantCalculator();
     initPortfolioFilters();
 });
-
-/* ==========================================================================
-   0. MOBILE MENU LOGIC
-   ========================================================================== */
-function initMobileMenu() {
-    const mobileBtn = document.getElementById('mobile-menu-btn');
-    const closeBtn = document.getElementById('mobile-menu-close');
-    const overlay = document.getElementById('mobile-menu-overlay');
-    const navLinks = document.querySelectorAll('.mobile-nav-link, .mobile-menu-cta');
-
-    if (!mobileBtn || !overlay) return;
-
-    function toggleMenu() {
-        overlay.classList.toggle('active');
-        document.body.style.overflow = overlay.classList.contains('active') ? 'hidden' : '';
-    }
-
-    mobileBtn.addEventListener('click', toggleMenu);
-    closeBtn.addEventListener('click', toggleMenu);
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-    });
-}
 
 /* ==========================================================================
    1. TITLE PRINTING EFFECT (STRICT RESERVED BOUNDS - ZERO LAYOUT SHIFT)
