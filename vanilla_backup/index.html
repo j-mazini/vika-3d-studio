@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViKa 3D Studio | Impressão 3D & Engenharia de Precisão</title>
+    <meta name="description" content="Estúdio de engenharia e manufatura aditiva 3D FDM & Resina SLA 8K sob medida. Transformamos arquivos CAD/STL em protótipos industriais e colecionáveis.">
+    
+    <!-- Design System CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Icons & Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Three.js 3D Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="main.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Cyber Grid Background -->
+    <div class="cyber-grid-bg"></div>
+
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="#" class="logo-brand">
+                    <div class="logo-icon">
+                        <i class="fa-solid fa-cube"></i>
+                    </div>
+                    VIKA <span>3D</span>
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="#materiais" class="nav-link"><i class="fa-solid fa-layer-group"></i> Materiais 3D</a></li>
+                    <li><a href="#calculadora" class="nav-link"><i class="fa-solid fa-calculator"></i> Calculadora</a></li>
+                    <li><a href="#portfolio" class="nav-link"><i class="fa-solid fa-shapes"></i> Portfólio</a></li>
+                    <li><a href="#esteira" class="nav-link"><i class="fa-solid fa-microchip"></i> Processo</a></li>
+                </ul>
+
+                <div>
+                    <a href="#calculadora" class="btn-primary">
+                        <i class="fa-brands fa-whatsapp"></i> Pedir Orçamento
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HERO SECTION WITH NO LAYOUT SHIFT TYPING TITLE -->
+        <section class="hero">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-tag">
+                        <i class="fa-solid fa-bolt"></i> Impressão 3D & Engenharia Digital
+                    </div>
+
+                    <div class="printer-title-wrapper">
+                        <h1 class="printed-title-static">TRANSFORMANDO IDEIAS EM</h1>
+                        <div class="printed-line">
+                            <span id="print-title-target" class="print-target"></span>
+                        </div>
+                    </div>
+
+                    <p class="hero-subtitle">
+                        Manufatura aditiva de altíssima tolerância para protótipos industriais, peças técnicas sob medida e colecionáveis de alta definição em resina 8K.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#calculadora" class="btn-primary">
+                            <i class="fa-solid fa-sliders"></i> Simular Orçamento em Tempo Real
+                        </a>
+                        <a href="#materiais" class="btn-secondary">
+                            <i class="fa-solid fa-atom"></i> Explorar Materiais 3D
+                        </a>
+                    </div>
+
+                    <div class="hero-specs-bar">
+                        <div class="spec-item">
+                            <span class="spec-val">0.02 mm</span>
+                            <span class="spec-lbl">Precisão Micrométrica SLA</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-val">15+ Polímeros</span>
+                            <span class="spec-lbl">Carbono, TPU, ASA, Resinas</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-val">24 Horas</span>
+                            <span class="spec-lbl">Prototipagem Expressa</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Painel 3D Interativo No Hero -->
+                <div class="hero-canvas-container">
+                    <div id="hero-3d-canvas"></div>
+                    <div class="canvas-controls-overlay">
+                        <span><i class="fa-solid fa-cube"></i> Objeto 3D Interativo</span>
+                        <div class="canvas-btn-group">
+                            <button id="btn-toggle-mesh" class="canvas-btn" title="Alternar Geometria"><i class="fa-solid fa-arrows-rotate"></i> Geometria</button>
+                            <button id="btn-toggle-wireframe" class="canvas-btn" title="Modo Wireframe"><i class="fa-solid fa-border-none"></i> Wireframe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 1: SIMULADOR INTERATIVO DE MATERIAIS 3D -->
+        <section id="materiais" class="materials-section">
+            <div class="section-header">
+                <span class="section-tag">// LABORATÓRIO POLIMÉRICO</span>
+                <h2 class="section-title">Simulador de Materiais 3D</h2>
+                <p class="section-subtitle">Selecione o polímero ideal para as exigências mecânicas, estéticas e térmicas do seu projeto.</p>
+            </div>
+
+            <div class="materials-grid">
+                <!-- Material Selector Buttons -->
+                <div class="material-selector-list">
+                    <button class="material-card-btn active" data-mat="petg-cf">
+                        <div class="mat-info">
+                            <div class="mat-icon"><i class="fa-solid fa-gear"></i></div>
+                            <div>
+                                <div class="mat-name">PETG Fibra de Carbono</div>
+                                <div class="mat-tech">FDM Industrial • 15% Carbon Fiber</div>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                    <button class="material-card-btn" data-mat="sla-8k">
+                        <div class="mat-info">
+                            <div class="mat-icon"><i class="fa-solid fa-chess-knight"></i></div>
+                            <div>
+                                <div class="mat-name">Resina SLA Ultra-Detail 8K</div>
+                                <div class="mat-tech">SLA/DLP • Camada 0.02mm</div>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                    <button class="material-card-btn" data-mat="silk-gold">
+                        <div class="mat-info">
+                            <div class="mat-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                            <div>
+                                <div class="mat-name">PLA Silk Dourado Gradiente</div>
+                                <div class="mat-tech">FDM Design • Brilho Acetinado</div>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                    <button class="material-card-btn" data-mat="tpu-flex">
+                        <div class="mat-info">
+                            <div class="mat-icon"><i class="fa-solid fa-shoe-prints"></i></div>
+                            <div>
+                                <div class="mat-name">TPU Flexível 95A</div>
+                                <div class="mat-tech">Elastômero • Alta Memória</div>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                    <button class="material-card-btn" data-mat="asa-uv">
+                        <div class="mat-info">
+                            <div class="mat-icon"><i class="fa-solid fa-sun"></i></div>
+                            <div>
+                                <div class="mat-name">ASA Pro UV-Shield</div>
+                                <div class="mat-tech">Grau Automotivo • Uso Externo</div>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <!-- Material Detail Display Panel -->
+                <div class="material-preview-panel">
+                    <div>
+                        <div class="mat-preview-header">
+                            <h3 id="mat-display-name" class="mat-title-large">PETG Fibra de Carbono</h3>
+                            <span id="mat-display-badge" class="mat-badge-type">Grau Engenharia</span>
+                        </div>
+
+                        <p id="mat-display-desc" class="mat-desc">
+                            Polímero técnico de alta tenacidade reforçado com 15% de microfibras de carbono. Entrega rigidez extrema, tolerância dimensional perfeita e acabamento fosco técnico sem marcas visíveis de camadas.
+                        </p>
+                    </div>
+
+                    <div>
+                        <div class="mat-stats-list">
+                            <div class="stat-row">
+                                <div class="stat-meta">
+                                    <span>Resistência Mecânica & Impacto</span>
+                                    <span id="val-resistencia" class="calc-val-badge">95%</span>
+                                </div>
+                                <div class="stat-bar-bg">
+                                    <div id="bar-resistencia" class="stat-bar-fill" style="width: 95%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="stat-row">
+                                <div class="stat-meta">
+                                    <span>Precisão de Detalhes Superficiais</span>
+                                    <span id="val-detalhamento" class="calc-val-badge">82%</span>
+                                </div>
+                                <div class="stat-bar-bg">
+                                    <div id="bar-detalhamento" class="stat-bar-fill" style="width: 82%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="stat-row">
+                                <div class="stat-meta">
+                                    <span>Resistência Térmica</span>
+                                    <span id="val-termica" class="calc-val-badge">90%</span>
+                                </div>
+                                <div class="stat-bar-bg">
+                                    <div id="bar-termica" class="stat-bar-fill" style="width: 90%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="stat-row">
+                                <div class="stat-meta">
+                                    <span>Flexibilidade & Deformação</span>
+                                    <span id="val-flexibilidade" class="calc-val-badge">20%</span>
+                                </div>
+                                <div class="stat-bar-bg">
+                                    <div id="bar-flexibilidade" class="stat-bar-fill" style="width: 20%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="mat-display-tags" class="mat-tags">
+                            <span class="mat-tag">Resistência Mecânica</span>
+                            <span class="mat-tag">Peças de Engrenagem</span>
+                            <span class="mat-tag">Resistente a Impacto</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 2: CALCULADORA DE ORÇAMENTO INSTANTÂNEO -->
+        <section id="calculadora" class="calculator-section">
+            <div class="section-header">
+                <span class="section-tag">// ESTIMADOR EM TEMPO REAL</span>
+                <h2 class="section-title">Calculadora de Orçamento</h2>
+                <p class="section-subtitle">Ajuste as variáveis do seu modelo e obtenha uma estimativa prévia instantânea antes de enviar seus arquivos CAD/STL.</p>
+            </div>
+
+            <div class="calc-container">
+                <div class="calc-inputs">
+                    <!-- Tecnologias -->
+                    <div class="calc-group">
+                        <label class="calc-label" for="calc-tech">
+                            <span>Tecnologia & Material</span>
+                        </label>
+                        <select id="calc-tech" class="calc-select">
+                            <option value="FDM - PLA Premium">FDM - PLA Premium (Peças Gerais & Mockups)</option>
+                            <option value="FDM - PETG Fibra de Carbono">FDM - PETG Fibra de Carbono (Engenharia)</option>
+                            <option value="Resina SLA - Ultra Detail 8K">Resina SLA - Ultra Detail 8K (Figures & Joias)</option>
+                            <option value="FDM - TPU Flexível">FDM - TPU Flexível (Borracha / Vedações)</option>
+                        </select>
+                    </div>
+
+                    <!-- Dimensão da Peça -->
+                    <div class="calc-group">
+                        <label class="calc-label" for="calc-size">
+                            <span>Dimensão Aproximada (Maior Eixo)</span>
+                            <span id="val-size-display" class="calc-val-badge">12 cm</span>
+                        </label>
+                        <input id="calc-size" type="range" min="3" max="45" value="12" class="calc-range">
+                    </div>
+
+                    <!-- Percentual de Preenchimento -->
+                    <div class="calc-group">
+                        <label class="calc-label" for="calc-infill">
+                            <span>Preenchimento Interno (Infill)</span>
+                            <span id="val-infill-display" class="calc-val-badge">30%</span>
+                        </label>
+                        <input id="calc-infill" type="range" min="15" max="100" value="30" step="5" class="calc-range">
+                    </div>
+
+                    <!-- Altura de Camada / Precisão -->
+                    <div class="calc-group">
+                        <label class="calc-label"><span>Nível de Precisão das Camadas</span></label>
+                        <div class="precision-grid">
+                            <div class="precision-opt" data-mult="0.8">
+                                <span class="prec-title">Rápida</span>
+                                <span class="prec-desc">0.20mm</span>
+                            </div>
+                            <div class="precision-opt active" data-mult="1.0">
+                                <span class="prec-title">Padrão</span>
+                                <span class="prec-desc">0.12mm</span>
+                            </div>
+                            <div class="precision-opt" data-mult="1.5">
+                                <span class="prec-title">Ultra 8K</span>
+                                <span class="prec-desc">0.05mm</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Display do Orçamento Calculado -->
+                <div class="calc-summary-panel">
+                    <div>
+                        <div class="summary-title"><i class="fa-solid fa-chart-line"></i> Estimativa do Projeto</div>
+                        
+                        <div class="estimate-price-box">
+                            <span class="est-lbl">Investimento Estimado</span>
+                            <div id="calc-price-display" class="est-amount">R$ 85 - R$ 115</div>
+                            <div id="calc-time-display" class="est-time">⚡ Produção estimada: ~8h</div>
+                        </div>
+
+                        <div class="summary-details-list">
+                            <div class="summary-row">
+                                <span>Verificação Físico-Digital</span>
+                                <span style="color: var(--accent-emerald);">Incluída Grátis</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Suporte & Pós-Cura</span>
+                                <span>Sem Costuras</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Garantia de Ajuste</span>
+                                <span>100% Garantida</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a id="calc-whatsapp-btn" href="#" target="_blank" class="btn-primary" style="justify-content: center; width: 100%;">
+                        <i class="fa-brands fa-whatsapp"></i> Enviar Projeto no WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 3: PORTFÓLIO & SHOWCASE INTERATIVO -->
+        <section id="portfolio" class="portfolio-section">
+            <div class="section-header">
+                <span class="section-tag">// GALERIA DE PROJETOS RECENTES</span>
+                <h2 class="section-title">Portfólio de Alta Definição</h2>
+                <p class="section-subtitle">Exemplos reais de impressões desenvolvidas no estúdio com máxima fidelidade e acabamento técnico.</p>
+            </div>
+
+            <!-- Filtros -->
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">Todos os Projetos</button>
+                <button class="filter-btn" data-filter="industrial">Industrial & Engenharia</button>
+                <button class="filter-btn" data-filter="figure">Colecionáveis SLA 8K</button>
+                <button class="filter-btn" data-filter="design">Design & Arquitetura</button>
+                <button class="filter-btn" data-filter="custom">Componentes Especiais</button>
+            </div>
+
+            <div class="portfolio-grid">
+                <!-- Card 1 -->
+                <div class="portfolio-card" data-category="industrial">
+                    <div class="card-img-wrapper">
+                        <img src="./assets/portfolio_industrial.png" alt="Engrenagem Industrial PETG Carbono" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">FDM Industrial</span>
+                            <h3 class="card-title">Conjunto de Engrenagens PETG-CF</h3>
+                            <span class="card-meta-spec">15% Carbon Fiber • Infill 80% • Resolução 0.12mm</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="portfolio-card" data-category="figure">
+                    <div class="card-img-wrapper">
+                        <img src="./assets/portfolio_figure.png" alt="Action Figure Resina SLA 8K" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Resina SLA 8K</span>
+                            <h3 class="card-title">Estátua Guerrier Cyberpunk</h3>
+                            <span class="card-meta-spec">Resina SLA Ultra-Detail • Camada 0.02mm</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="portfolio-card" data-category="design">
+                    <div class="card-img-wrapper">
+                        <img src="./assets/portfolio_design.png" alt="Vaso Paramétrico PLA Silk Gold" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Artístico & Design</span>
+                            <h3 class="card-title">Vaso Escultórico Paramétrico</h3>
+                            <span class="card-meta-spec">PLA Silk Gold Gradiente • Acabamento Acetinado</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="portfolio-card" data-category="custom">
+                    <div class="card-img-wrapper">
+                        <img src="./assets/portfolio_custom.png" alt="Admissão Automotiva ASA Pro" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Automotivo</span>
+                            <h3 class="card-title">Coletor de Admissão ASA UV Pro</h3>
+                            <span class="card-meta-spec">Resistente a 100°C • Estabilidade Térmica</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 4: ESTEIRA "DO CÓDIGO AO OBJETO" (WORKFLOW) -->
+        <section id="esteira" class="workflow-section">
+            <div class="section-header">
+                <span class="section-tag">// FLUXO DE MANUFATURA ADITIVA</span>
+                <h2 class="section-title">Do Modelo 3D ao Objeto Físico</h2>
+                <p class="section-subtitle">Conheça as etapas rigorosas de curadoria técnica aplicadas a cada peça impressa.</p>
+            </div>
+
+            <div class="timeline-grid">
+                <div class="timeline-step">
+                    <span class="step-num">01</span>
+                    <div class="step-icon-box">
+                        <i class="fa-solid fa-cube"></i>
+                    </div>
+                    <h3 class="step-title">Análise CAD & Slicing</h3>
+                    <p class="step-desc">Inspeção de malha 3D, correção de normais e otimização da orientação de fatiamento para garantir máxima resistência estrutural.</p>
+                </div>
+
+                <div class="timeline-step">
+                    <span class="step-num">02</span>
+                    <div class="step-icon-box">
+                        <i class="fa-solid fa-flask"></i>
+                    </div>
+                    <h3 class="step-title">Calibração Polimérica</h3>
+                    <p class="step-desc">Ajuste de temperatura do bocal, mesa térmica e compensação de encolhimento para o polímero específico selecionado.</p>
+                </div>
+
+                <div class="timeline-step">
+                    <span class="step-num">03</span>
+                    <div class="step-icon-box">
+                        <i class="fa-solid fa-print"></i>
+                    </div>
+                    <h3 class="step-title">Impressão Submilimétrica</h3>
+                    <p class="step-desc">Deposição ou polimerização UV em ambientes com temperatura e umidade controladas para fusão homogênea.</p>
+                </div>
+
+                <div class="timeline-step">
+                    <span class="step-num">04</span>
+                    <div class="step-icon-box">
+                        <i class="fa-solid fa-sparkles"></i>
+                    </div>
+                    <h3 class="step-title">Pós-Processamento & Cura</h3>
+                    <p class="step-desc">Remoção de suportes de precisão, lavagem ultrassônica em IPA, tratamento térmico/UV e polimento curatorial final.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <a href="#" class="logo-brand">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-cube"></i>
+                </div>
+                VIKA <span>3D STUDIO</span>
+            </a>
+
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/vikastudios3d" target="_blank" class="social-link" title="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/5511999999999" target="_blank" class="social-link" title="WhatsApp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+                <a href="mailto:contato@vikastudios3d.com" class="social-link" title="E-mail">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 ViKa 3D Studio. Engenharia de Precisão & Impressão 3D Avançada. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
