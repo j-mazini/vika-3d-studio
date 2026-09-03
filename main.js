@@ -170,14 +170,29 @@ function createModelMesh(type) {
 
     if (!isWireframe) {
         const wireGeo = new THREE.WireframeGeometry(geometry);
-        const wireMat = new THREE.LineBasicMaterial({ 
+        
+        // Base wireframe (core)
+        const wireMatCore = new THREE.LineBasicMaterial({ 
             color: 0x00ffff, 
             transparent: true, 
-            opacity: 0.35,
-            depthWrite: false
+            opacity: 0.8,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending
         });
-        const wireLines = new THREE.LineSegments(wireGeo, wireMat);
-        meshGroup.add(wireLines);
+        const wireLinesCore = new THREE.LineSegments(wireGeo, wireMatCore);
+        meshGroup.add(wireLinesCore);
+
+        // Glow wireframe (outer)
+        const wireMatGlow = new THREE.LineBasicMaterial({ 
+            color: 0x00ffff, 
+            transparent: true, 
+            opacity: 0.3,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending
+        });
+        const wireLinesGlow = new THREE.LineSegments(wireGeo, wireMatGlow);
+        wireLinesGlow.scale.set(1.02, 1.02, 1.02); // Slightly larger
+        meshGroup.add(wireLinesGlow);
     }
 }
 
