@@ -5,9 +5,7 @@ const ThreeCanvas = () => {
     const containerRef = useRef(null);
     const sceneRef = useRef({});
     const [currentShape, setCurrentShape] = useState('torus');
-    const [wireframeOnly, setWireframeOnly] = useState(false);
     const currentShapeRef = useRef('torus');
-    const isWireframeRef = useRef(false);
 
     function createModelMesh(type, isWireframe, scene, meshGroup) {
         while (meshGroup.children.length > 0) {
@@ -91,7 +89,7 @@ const ThreeCanvas = () => {
 
         sceneRef.current = { scene, camera, renderer, meshGroup };
 
-        createModelMesh(currentShapeRef.current, isWireframeRef.current, scene, meshGroup);
+        createModelMesh(currentShapeRef.current, false, scene, meshGroup);
 
         let mouseX = 0, mouseY = 0;
         const handleMouseMove = (e) => {
@@ -135,15 +133,7 @@ const ThreeCanvas = () => {
         currentShapeRef.current = next;
         setCurrentShape(next);
         const { scene, meshGroup } = sceneRef.current;
-        if (meshGroup) createModelMesh(next, isWireframeRef.current, scene, meshGroup);
-    };
-
-    const toggleWireframe = () => {
-        const next = !isWireframeRef.current;
-        isWireframeRef.current = next;
-        setWireframeOnly(next);
-        const { scene, meshGroup } = sceneRef.current;
-        if (meshGroup) createModelMesh(currentShapeRef.current, next, scene, meshGroup);
+        if (meshGroup) createModelMesh(next, false, scene, meshGroup);
     };
 
     return (
@@ -154,9 +144,6 @@ const ThreeCanvas = () => {
                 <div className="canvas-btn-group">
                     <button onClick={toggleShape} className="canvas-btn" title="Alternar Geometria">
                         <i className="fa-solid fa-arrows-rotate"></i> Geometria
-                    </button>
-                    <button onClick={toggleWireframe} className="canvas-btn" title="Modo Wireframe">
-                        <i className="fa-solid fa-border-none"></i> Wireframe
                     </button>
                 </div>
             </div>
