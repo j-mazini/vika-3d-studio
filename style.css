@@ -150,6 +150,99 @@ body {
     color: var(--accent-laser);
 }
 
+/* Mobile Menu Styles */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(8, 9, 13, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-menu-overlay.active {
+    transform: translateX(0);
+}
+
+.mobile-menu-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.mobile-menu-close:hover {
+    color: var(--accent-laser);
+}
+
+.mobile-nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+    width: 100%;
+    padding: 0 2rem;
+}
+
+.mobile-nav-link {
+    color: var(--text-main);
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    transition: color 0.2s ease;
+}
+
+.mobile-nav-link:hover {
+    color: var(--accent-laser);
+}
+
+.mobile-menu-cta {
+    margin-top: 2rem;
+    width: 100%;
+    justify-content: center;
+}
+
+/* Hide on desktop */
+.hide-desktop {
+    display: none;
+}
+
 /* Buttons */
 .btn-primary {
     background: var(--accent-laser);
@@ -983,6 +1076,16 @@ body {
 @media (max-width: 640px) {
     .nav-links {
         display: none;
+    }
+    .mobile-menu-btn {
+        display: block;
+    }
+    .hide-mobile {
+        display: none;
+    }
+    .desktop-cta {
+        padding: 0.5rem 0.8rem; /* Make it smaller just to show the icon if needed, or hide it */
+        display: none; /* Let's just hide it on very small screens, menu has it */
     }
     .navbar {
         padding: 0.8rem 1rem;
